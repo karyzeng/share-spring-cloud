@@ -25,6 +25,7 @@
     <properties>
         <nacos.version>2.1.1.RELEASE</nacos.version>
         <httpclient.version>4.5.12</httpclient.version>
+        <spring.cloud.version>2.1.1.RELEASE</spring.cloud.version>
     </properties>
 
     <dependencies>
@@ -66,6 +67,26 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${httpclient.version}</version>
+        </dependency>
+
+        <!-- spring-cloud-starter -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+            <version>${spring.cloud.version}</version>
+        </dependency>
+
+        <!-- feign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${spring.cloud.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>
