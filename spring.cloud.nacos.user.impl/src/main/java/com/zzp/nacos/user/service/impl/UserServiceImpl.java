@@ -1,13 +1,15 @@
 package com.zzp.nacos.user.service.impl;
 
 import com.zzp.nacos.order.entity.Order;
-import com.zzp.nacos.order.service.customer.OrderCustomer;
+import com.zzp.nacos.order.service.open.IOpenOrderService;
 import com.zzp.nacos.user.entity.User;
 import com.zzp.nacos.user.mapper.UserMapper;
 import com.zzp.nacos.user.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,11 +23,13 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Autowired
-    private OrderCustomer orderCustomer;
+    private IOpenOrderService openOrderService;
 
     @Override
     public void testOrder() {
-        Order order = orderCustomer.getById(1);
+        Order order = openOrderService.getById(1);
+        List<Order> orders = openOrderService.listOrders("ORDERNO09180001");
         System.out.println(order);
+        System.out.println(orders);
     }
 }
