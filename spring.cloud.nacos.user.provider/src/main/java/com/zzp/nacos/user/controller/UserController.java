@@ -36,6 +36,7 @@ public class UserController {
     ) {
         try {
             User user = userService.getById(id);
+            userService.testOrder();
             return Result.ok("查询成功", user);
         } catch (Exception e) {
             e.printStackTrace();
