@@ -1,4 +1,4 @@
-package com.zzp.nacos.order.service.customer;
+package com.zzp.nacos.order.service.open;
 
 import com.zzp.nacos.order.entity.Order;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -6,15 +6,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
- * @Description order服务消费者
+ * @Description order open接口
  * @Author karyzeng
  * @since 2020.09.18
  **/
 @FeignClient("nacos-order")
-public interface OrderCustomer {
+public interface IOpenOrderService {
 
-    @RequestMapping(value = "/provider/order/get", method = RequestMethod.GET)
+    @RequestMapping(value = "/open/order/get", method = RequestMethod.GET)
     Order getById(@RequestParam(value = "id", required = true) Integer id);
+
+    @RequestMapping(value = "/open/order/listOrders", method = RequestMethod.GET)
+    List<Order> listOrders(@RequestParam(value = "orderNo", required = true) String orderNo);
 
 }
