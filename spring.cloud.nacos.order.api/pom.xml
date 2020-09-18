@@ -22,12 +22,30 @@
         </plugins>
     </build>
 
+    <properties>
+        <spring.cloud.version>2.1.1.RELEASE</spring.cloud.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
             <groupId>com.zzp</groupId>
             <artifactId>spring.boot.base.api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- feign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${spring.cloud.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>
