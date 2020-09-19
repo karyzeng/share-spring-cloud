@@ -35,8 +35,8 @@ public class OrderController {
             @RequestParam(value = "id", required = true) Integer id
     ) {
         try {
-            Order user = orderService.getById(id);
-            return Result.ok("查询成功", user);
+            Order order = orderService.getById(id);
+            return Result.ok("查询成功", order);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.failed("查询失败");
