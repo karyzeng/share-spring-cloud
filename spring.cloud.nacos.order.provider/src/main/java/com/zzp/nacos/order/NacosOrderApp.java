@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages={"com.zzp"})
 @MapperScan("com.zzp.**.mapper")
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"com.zzp.nacos.*.service.open"})
 public class NacosOrderApp {
 
     public static void main(String[] args) {
