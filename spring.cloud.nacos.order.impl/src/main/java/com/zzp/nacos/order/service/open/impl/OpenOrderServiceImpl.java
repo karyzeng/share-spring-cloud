@@ -18,7 +18,6 @@ import java.util.List;
  * @since 2020.09.18
  **/
 @RestController
-@Service
 public class OpenOrderServiceImpl implements IOpenOrderService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
