@@ -26,6 +26,7 @@
         <nacos.version>2.1.1.RELEASE</nacos.version>
         <httpclient.version>4.5.12</httpclient.version>
         <spring.cloud.version>2.1.1.RELEASE</spring.cloud.version>
+        <feign-httpclient>10.4.0</feign-httpclient>
     </properties>
 
     <dependencies>
@@ -62,12 +63,7 @@
             <version>${nacos.version}</version>
         </dependency>
 
-        <!-- 使用nacos作为注册中心的时候需要配套使用httpclient -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
+        <!-- 使用nacos作为注册中心的时候需要配套使用httpclient，feign-httpclient中已经引入httpclient -->
 
         <!-- spring-cloud-starter -->
         <dependency>
@@ -87,6 +83,12 @@
                     <groupId>com.fasterxml.jackson.core</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+            <version>${feign-httpclient}</version>
         </dependency>
 
     </dependencies>
