@@ -34,4 +34,9 @@ public class OpenOrderServiceImpl implements IOpenOrderService {
     public List<Order> listOrders(String orderNo) {
         return orderService.listOrders(orderNo);
     }
+
+    @Override
+    public String getServiceName() {
+        return "nacos-order-1";
+    }
 }
