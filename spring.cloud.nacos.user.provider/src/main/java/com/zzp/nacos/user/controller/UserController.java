@@ -2,6 +2,7 @@ package com.zzp.nacos.user.controller;
 
 
 import com.zzp.base.results.Result;
+import com.zzp.nacos.order.service.open.IOpenOrderService;
 import com.zzp.nacos.user.entity.User;
 import com.zzp.nacos.user.service.IUserService;
 import org.slf4j.Logger;
@@ -30,6 +31,9 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private IOpenOrderService openOrderService;
+
     @RequestMapping(value = "get", method = RequestMethod.GET)
     public Result<User> getById(
             @RequestParam(value = "id", required = true) Integer id
@@ -38,6 +42,18 @@ public class UserController {
             User user = userService.getById(id);
             userService.testOrder();
             return Result.ok("查询成功", user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.failed("查询失败");
+        }
+    }
+
+    @RequestMapping(value = "providerName/get", method = RequestMethod.GET)
+    public Result<String> getProviderName(
+    ) {
+        try {
+            String providerName = openOrderService.getServiceName();
+            return Result.ok("查询成功", providerName);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.failed("查询失败");
