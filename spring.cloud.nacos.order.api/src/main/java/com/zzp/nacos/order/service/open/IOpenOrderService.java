@@ -22,4 +22,7 @@ public interface IOpenOrderService {
     @RequestMapping(value = "/open/order/listOrders", method = RequestMethod.GET)
     List<Order> listOrders(@RequestParam(value = "orderNo", required = true) String orderNo);
 
+    @RequestMapping(value = "/open/order/serviceName/get", method = RequestMethod.GET)
+    String getServiceName();
+
 }
