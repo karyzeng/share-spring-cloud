@@ -1,5 +1,6 @@
 package com.zzp.nacos.order.service.open.impl;
 
+import com.baomidou.mybatisplus.extension.exceptions.ApiException;
 import com.zzp.nacos.order.entity.Order;
 import com.zzp.nacos.order.service.IOrderService;
 import com.zzp.nacos.order.service.open.IOpenOrderService;
@@ -37,6 +38,7 @@ public class OpenOrderServiceImpl implements IOpenOrderService {
 
     @Override
     public String getServiceName() {
-        return "nacos-order-1";
+        throw new ApiException("测试异常");
+//        return "nacos-order-1";
     }
 }
