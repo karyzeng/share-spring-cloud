@@ -1,6 +1,7 @@
 package com.zzp.nacos.user.controller;
 
 
+import com.netflix.hystrix.exception.HystrixBadRequestException;
 import com.zzp.base.results.Result;
 import com.zzp.nacos.order.service.open.IOpenOrderService;
 import com.zzp.nacos.user.entity.User;
@@ -54,6 +55,9 @@ public class UserController {
         try {
             String providerName = openOrderService.getServiceName();
             return Result.ok("查询成功", providerName);
+        } catch (HystrixBadRequestException e) {
+            e.printStackTrace();
+            return Result.failed(e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             return Result.failed("查询失败");
