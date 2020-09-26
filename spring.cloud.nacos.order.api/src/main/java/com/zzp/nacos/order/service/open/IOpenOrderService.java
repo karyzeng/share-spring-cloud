@@ -1,6 +1,7 @@
 package com.zzp.nacos.order.service.open;
 
 import com.zzp.nacos.order.entity.Order;
+import com.zzp.nacos.order.service.open.fallback.OpenOrderFallbackService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +14,7 @@ import java.util.List;
  * @Author karyzeng
  * @since 2020.09.18
  **/
-@FeignClient("nacos-order")
+@FeignClient(value = "nacos-order", fallback = OpenOrderFallbackService.class)
 public interface IOpenOrderService {
 
     @RequestMapping(value = "/open/order/get", method = RequestMethod.GET)
