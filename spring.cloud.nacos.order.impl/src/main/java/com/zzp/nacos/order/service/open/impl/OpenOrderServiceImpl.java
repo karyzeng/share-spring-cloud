@@ -1,13 +1,12 @@
 package com.zzp.nacos.order.service.open.impl;
 
-import com.baomidou.mybatisplus.extension.exceptions.ApiException;
+import com.zzp.base.exceptions.FeignApiException;
 import com.zzp.nacos.order.entity.Order;
 import com.zzp.nacos.order.service.IOrderService;
 import com.zzp.nacos.order.service.open.IOpenOrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +37,7 @@ public class OpenOrderServiceImpl implements IOpenOrderService {
 
     @Override
     public String getServiceName() {
-        throw new ApiException("测试异常");
+        throw new FeignApiException("服务名不能为空111");
 //        return "nacos-order-1";
     }
 }
