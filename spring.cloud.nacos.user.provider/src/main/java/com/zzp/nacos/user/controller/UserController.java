@@ -3,6 +3,7 @@ package com.zzp.nacos.user.controller;
 
 import com.netflix.hystrix.exception.HystrixBadRequestException;
 import com.zzp.base.results.Result;
+import com.zzp.nacos.order.entity.Order;
 import com.zzp.nacos.order.service.open.IOpenOrderService;
 import com.zzp.nacos.user.entity.User;
 import com.zzp.nacos.user.service.IUserService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -50,11 +53,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "providerName/get", method = RequestMethod.GET)
-    public Result<String> getProviderName(
+    public Result<List<Order>> getProviderName(
     ) {
         try {
-            String providerName = openOrderService.getServiceName();
-            return Result.ok("查询成功", providerName);
+            List<Order> orders = openOrderService.listOrders("ORDER0918001");
+            return Result.ok("查询成功", orders);
         } catch (HystrixBadRequestException e) {
             e.printStackTrace();
             return Result.failed(e.getMessage());
