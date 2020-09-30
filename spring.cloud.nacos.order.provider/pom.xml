@@ -120,10 +120,10 @@
             <version>${feign-httpclient}</version>
         </dependency>
 
-        <!-- sleuth -->
+        <!-- sleuth和zipkin -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
             <version>${spring.cloud.version}</version>
         </dependency>
 
