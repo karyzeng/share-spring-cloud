@@ -120,7 +120,7 @@
             <version>${feign-httpclient}</version>
         </dependency>
 
-        <!-- sleuth和zipkin -->
+        <!-- sleuth和zipkin，该依赖已经包含spring-cloud-starter-sleuth -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
