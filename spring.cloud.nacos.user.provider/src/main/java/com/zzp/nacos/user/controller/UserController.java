@@ -57,7 +57,8 @@ public class UserController {
     ) {
         try {
             List<Order> orders = openOrderService.listOrders("ORDER0918001");
-            return Result.ok("查询成功", orders);
+            String providerName = openOrderService.getServiceName();
+            return Result.ok("查询成功，" + providerName, orders);
         } catch (HystrixBadRequestException e) {
             e.printStackTrace();
             return Result.failed(e.getMessage());
