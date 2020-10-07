@@ -127,6 +127,13 @@
             <version>${spring.cloud.version}</version>
         </dependency>
 
+        <!-- log4j2的AsyncLogger需要依赖到这个 -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+
     </dependencies>
 
 </project>
