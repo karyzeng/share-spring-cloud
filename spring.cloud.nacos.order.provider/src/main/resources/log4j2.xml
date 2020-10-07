@@ -11,6 +11,7 @@
 	<properties>
 		<property name="logPath">logs</property>
 		<property name="appName">nacos-order</property>
+		<Property name="logstash-pattern">{"host": "${sys:local-ip}", "logger": "%logger", "level": "%level", "time": "%d{yyyy-MM-dd HH:mm:ss.SSS}", "message": "[%thread] [%c:%L] --- %message"}%n</Property>
 	</properties>
 .
 
@@ -24,7 +25,7 @@
 			<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
 			<!--输出日志的格式 -->
 			<!--<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36}:%L - %msg%n" />-->
-			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [${appName},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%t] %-5level %logger{36}:%L - %msg%n" />
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [${sys:local-ip}][${appName},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%t] %-5level %logger{36}:%L - %msg%n" />
 		</Console>
 
 		<!--输出到文件 -->
@@ -50,7 +51,12 @@
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
             </Policies> 
             <DefaultRolloverStrategy max="30"/>
-        </RollingRandomAccessFile>  
+        </RollingRandomAccessFile>
+
+		<Socket name="logstash" host="127.0.0.1" port="5602" protocol="TCP">
+			<PatternLayout pattern="${logstash-pattern}"/>
+		</Socket>
+
 	</Appenders>
 
 
@@ -75,5 +81,11 @@
             <AppenderRef ref="ConsoleLog"/>
             <AppenderRef ref="DailyFileLog" />
         </Logger>
+
+		<AsyncLogger name="com.zzp" level="info" includeLocation="false" >
+			<appender-ref ref="logstash" />
+		</AsyncLogger>
+
 	</Loggers>
+
 </Configuration>
