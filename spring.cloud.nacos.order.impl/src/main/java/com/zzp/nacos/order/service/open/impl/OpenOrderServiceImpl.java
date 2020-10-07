@@ -38,6 +38,7 @@ public class OpenOrderServiceImpl implements IOpenOrderService {
     @Override
     public String getServiceName() {
 //        throw new FeignApiException("服务名不能为空111");
+        logger.info("调用了serviceName服务");
         return "nacos-order-1";
     }
 }
