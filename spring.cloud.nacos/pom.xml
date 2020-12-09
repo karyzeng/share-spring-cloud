@@ -23,7 +23,7 @@
     </build>
 
     <properties>
-        <nacos.version>2.1.1.RELEASE</nacos.version>
+        <nacos.version>2.2.3.RELEASE</nacos.version>
         <httpclient.version>4.5.12</httpclient.version>
     </properties>
 
