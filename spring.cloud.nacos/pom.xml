@@ -69,6 +69,13 @@
             <version>2.3.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- logstash-logback -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>6.5</version>
+        </dependency>
+
     </dependencies>
 
 
