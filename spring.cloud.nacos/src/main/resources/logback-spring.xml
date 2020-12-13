@@ -40,14 +40,14 @@
         </triggeringPolicy>
     </appender>
 
-    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <!-- logstash地址 -->
-        <destination>127.0.0.1:5602</destination>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <!-- 输出到Elasticsearch中索引的名称前缀 -->
-            <customFields>{"appName": "spring-cloud-nacos-log"}</customFields>
-        </encoder>
-    </appender>
+<!--    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--        &lt;!&ndash; logstash地址 &ndash;&gt;-->
+<!--        <destination>127.0.0.1:5602</destination>-->
+<!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder">-->
+<!--            &lt;!&ndash; 输出到Elasticsearch中索引的名称前缀 &ndash;&gt;-->
+<!--            <customFields>{"appName": "spring-cloud-nacos-log"}</customFields>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
     <!--
         root节点：
