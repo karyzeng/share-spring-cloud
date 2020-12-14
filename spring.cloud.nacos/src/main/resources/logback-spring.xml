@@ -40,14 +40,23 @@
         </triggeringPolicy>
     </appender>
 
-<!--    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
-<!--        &lt;!&ndash; logstash地址 &ndash;&gt;-->
-<!--        <destination>127.0.0.1:5602</destination>-->
-<!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder">-->
-<!--            &lt;!&ndash; 输出到Elasticsearch中索引的名称前缀 &ndash;&gt;-->
-<!--            <customFields>{"appName": "spring-cloud-nacos-log"}</customFields>-->
-<!--        </encoder>-->
-<!--    </appender>-->
+    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!-- logstash地址 -->
+        <destination>127.0.0.1:5602</destination>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                            "appName": "spring-cloud-nacos-log-text",
+                            "createTime": "%date{ISO8601}",
+                            "message":"%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{50}:%L - %msg%n"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
 
     <!--
         root节点：
@@ -65,6 +74,10 @@
     <logger name="java.sql.Connection" level="DEBUG" />
     <logger name="java.sql.Statement" level="DEBUG" />
     <logger name="java.sql.PreparedStatement" level="DEBUG" />
+
+    <logger name="com.zzp.nacos" level="INFO">
+        <appender-ref ref="logstash" />
+    </logger>
 
     <!-- 日志输出级别 -->
     <root level="INFO">
