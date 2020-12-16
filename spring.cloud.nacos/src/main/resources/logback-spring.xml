@@ -10,9 +10,16 @@
     <property name="LOG_MAX_SIZE" value="1024MB" />
     <!-- 日志文件的最大大小 -->
     <property name="LOG_MAX_HISTORY" value="30" />
-    <!-- 格式化输出：%d表示日期，%thread/%t表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+    <!-- 格式化输出：%d表示日期，%thread/%t表示线程名，%-5level：级别从左显示5个字符宽度，%msg：日志消息，%n是换行符 -->
     <property name="STDOUT_LOG_PATTERN" value="%blue(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%cyan(%t)] %-5level %logger{50}:%L - %msg%n"/>
     <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{50}:%L - %msg%n"/>
+    <!--
+        获取application.properties文件中的server.port配置
+     -->
+    <springProperty scope="context" name="SERVER_PORT" source="server.port" defaultValue="8081"/>
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name" defaultValue="nacos-example"/>
+    <!-- 获取当前机器ip -->
+    <conversionRule conversionWord="ip" converterClass="com.zzp.nacos.config.LogIpConfig" />
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -48,7 +55,11 @@
                 <pattern>
                     <pattern>
                         {
-                            "appName": "spring-cloud-nacos-log-text",
+                            "appName": "${APP_NAME}-log",
+                            "host": "%ip",
+                            "port": "${SERVER_PORT}",
+                            "thread": "%t",
+                            "level": "%-5level",
                             "createTime": "%date{ISO8601}",
                             "message":"%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{50}:%L - %msg%n"
                         }
