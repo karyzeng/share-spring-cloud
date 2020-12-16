@@ -30,4 +30,13 @@ public class CommonLogEntity implements Serializable {
     @Field(type = FieldType.Keyword)
     private String port;
 
+    @Field(type = FieldType.Text)
+    private String appName;
+
+    @Field(type = FieldType.Text)
+    private String thread;
+
+    @Field(type = FieldType.Keyword)
+    private String level;
+
 }
