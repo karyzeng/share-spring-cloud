@@ -14,7 +14,8 @@ import org.springframework.context.annotation.Configuration;
  * @Author karyzeng
  * @since 2020.12.18
  **/
-@Configuration
+//@Configuration
+@Deprecated
 public class MQProducerConfiguration {
 
     public static final Logger logger = LoggerFactory.getLogger(MQProducerConfiguration.class);
