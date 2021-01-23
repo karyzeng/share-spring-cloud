@@ -1,5 +1,6 @@
 package com.zzp.seckill.controller;
 
+import com.zzp.seckill.entity.SysUser;
 import com.zzp.seckill.util.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ public class IndexController {
 
     @RequestMapping(value = "hello", method = RequestMethod.GET)
     public String hello() {
-        String user = SecurityUtils.getUser();
+        SysUser user = SecurityUtils.getUser();
         return "hello " + user;
     }
 
