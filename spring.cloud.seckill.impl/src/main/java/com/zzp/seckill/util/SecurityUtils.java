@@ -1,5 +1,7 @@
 package com.zzp.seckill.util;
 
+import com.zzp.seckill.entity.SysUser;
+
 /**
  * @Description 权限工具类
  * @Author Garyzeng
@@ -7,13 +9,13 @@ package com.zzp.seckill.util;
  **/
 public class SecurityUtils {
 
-    private static final ThreadLocal<String> userLocal = new ThreadLocal<String>();
+    private static final ThreadLocal<SysUser> userLocal = new ThreadLocal<SysUser>();
 
-    public static void setUser(String user) {
+    public static void setUser(SysUser user) {
         userLocal.set(user);
     }
 
-    public static String getUser() {
+    public static SysUser getUser() {
         return userLocal.get();
     }
 
