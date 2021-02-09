@@ -39,7 +39,7 @@ public class LoginController {
             String token = sysUserService.login(loginUserVo);
             if (StringUtils.isNotBlank(token)) {
                 CookieUtils.addCookie(response, token);
-                Result.ok("登录成功");
+                return Result.ok("登录成功");
             }
             return Result.failed("登录失败，无法获取token");
         } catch (ApiException e) {
